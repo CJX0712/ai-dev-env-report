@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 开发环境安装清单</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+    background: #f7f8fa; color: #1f2328; line-height: 1.6;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  h1 { font-size: 24px; margin: 0 0 4px; color: #111418; }
+  .sub { color: #6b7280; font-size: 13px; margin-bottom: 24px; }
+  h2 {
+    font-size: 16px; margin: 28px 0 12px; padding-bottom: 8px;
+    border-bottom: 1px solid #e5e7eb; color: #111418;
+  }
+  table {
+    width: 100%; border-collapse: collapse; background: #fff;
+    border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; font-size: 13px;
+  }
+  th { background: #f3f4f6; text-align: left; padding: 10px 12px; font-weight: 600; color: #374151; }
+  td { padding: 10px 12px; border-top: 1px solid #f0f1f3; vertical-align: top; }
+  code {
+    background: #f3f4f6; padding: 1px 5px; border-radius: 4px;
+    font-family: "SFMono-Regular", Consolas, monospace; font-size: 12px; color: #b4295b;
+  }
+  .ok { color: #1a7f37; font-weight: 600; }
+  .warn { color: #9a6700; font-weight: 600; }
+  .skip { color: #6b7280; font-weight: 600; }
+  .card {
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 8px;
+    padding: 16px 18px; margin-bottom: 14px;
+  }
+  .card.warn-card { background: #fffbeb; border-color: #fde68a; }
+  ul { margin: 8px 0 0; padding-left: 20px; }
+  li { margin-bottom: 6px; }
+  .cmd { background: #1f2328; color: #e6edf3; padding: 12px 14px; border-radius: 6px;
+         font-family: Consolas, monospace; font-size: 12px; overflow-x: auto; margin: 8px 0 0; }
+  .cmd span { color: #7ee787; }
+  .tag { display:inline-block; background:#eef2ff; color:#4f46e5; border-radius:4px;
+         padding:1px 7px; font-size:12px; margin-right:6px; }
+  .foot { margin-top: 28px; font-size: 12px; color: #6b7280; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>AI 开发环境安装清单</h1>
+  <div class="sub">2026 年 9 月 14 日 · Windows 11 · Python 3.13.14（隔离 venv）· 全部组件已验证可导入 / 可运行</div>
+
+  <h2>一、Python ML 与数据栈 <span class="tag">隔离 venv</span></h2>
+  <table>
+    <tr><th style="width:150px">组件</th><th style="width:110px">版本</th><th style="width:70px">状态</th><th>说明</th></tr>
+    <tr><td>PyTorch</td><td>2.14.0+cpu</td><td class="ok">✅</td><td>CPU 版，与 torchvision 0.29.0 / torchaudio 2.11.0 配套</td></tr>
+    <tr><td>Transformers</td><td>5.17.0</td><td class="ok">✅</td><td>含 tokenizers 0.23.2、accelerate 1.15.0</td></tr>
+    <tr><td>Datasets / Hub</td><td>5.0.1 / 1.31.0</td><td class="ok">✅</td><td>HuggingFace 数据集与 <code>huggingface-cli</code></td></tr>
+    <tr><td>NumPy / Pandas</td><td>2.5.3 / 3.0.5</td><td class="ok">✅</td><td>含 SciPy 1.18.1</td></tr>
+    <tr><td>scikit-learn</td><td>1.9.1</td><td class="ok">✅</td><td>传统机器学习</td></tr>
+    <tr><td>JupyterLab</td><td>4.6.3</td><td class="ok">✅</td><td>notebook / ipykernel 已就绪</td></tr>
+    <tr><td>Crawl4AI</td><td>0.9.3</td><td class="ok">✅</td><td>含 Playwright 1.62.0 + Chromium 浏览器（已下载）</td></tr>
+    <tr><td>llama-cpp-python</td><td>0.3.35</td><td class="ok">✅</td><td>用官方预编译 CPU wheel 装，避开本机无 C++ 编译器问题</td></tr>
+  </table>
+
+  <h2>二、本地大模型运行</h2>
+  <table>
+    <tr><th style="width:150px">组件</th><th style="width:110px">版本</th><th style="width:70px">状态</th><th>说明 / 路径</th></tr>
+    <tr><td>Ollama</td><td>0.34.0</td><td class="ok">✅</td><td><code>C:\Users\Administrator\AppData\Local\Programs\Ollama\ollama.exe</code></td></tr>
+    <tr><td>llama-cpp-python</td><td>0.3.35</td><td class="ok">✅</td><td>Python 内直接跑 GGUF 量化模型（CPU）</td></tr>
+    <tr><td>vLLM</td><td>—</td><td class="skip">⏭ 跳过</td><td>需要 NVIDIA CUDA 独显；本机为 Ryzen APU，装了也跑不了</td></tr>
+  </table>
+
+  <h2>三、AI 编码工具</h2>
+  <table>
+    <tr><th style="width:150px">组件</th><th style="width:110px">版本</th><th style="width:70px">状态</th><th>说明 / 路径</th></tr>
+    <tr><td>Cursor</td><td>3.19.7</td><td class="ok">✅</td><td><code>C:\Users\Administrator\AppData\Local\Programs\cursor</code></td></tr>
+    <tr><td>Continue / Cline</td><td>—</td><td class="warn">⚠️ 待装</td><td>VS Code / JetBrains 插件，需你确认用哪个 IDE，见下方手动步骤</td></tr>
+  </table>
+
+  <h2>四、需要你手动完成的步骤</h2>
+  <div class="card">
+    <ul>
+      <li><strong>装 Continue / Cline 插件</strong>：我无法代装 IDE 插件。请在你用的 IDE 里搜名字安装——
+          VS Code 扩展市场搜 <code>Continue</code> 或 <code>Cline</code>；JetBrains 在 Settings → Plugins 里搜。</li>
+      <li><strong>拉一个本地模型</strong>（Ollama 装好但还没模型）：
+        <div class="cmd"><span>&gt;</span> ollama pull qwen2.5:7b<br><span>&gt;</span> ollama run qwen2.5:7b</div>
+        <span style="font-size:12px;color:#6b7280">7B 模型约 4.7GB，首次拉取较慢；CPU 推理建议选 7B 以下的量化版（如 <code>qwen2.5:3b</code>）。</span></li>
+      <li><strong>重启一次终端</strong>：让新装的 Cursor / Ollama 进入 PATH（当前会话的 PATH 还没刷新）。</li>
+    </ul>
+  </div>
+
+  <h2>五、已知限制与处理记录</h2>
+  <div class="card warn-card">
+    <ul>
+      <li><strong>无 NVIDIA 独显</strong> → CUDA 不可用（<code>torch.cuda.is_available() = False</code>），已装 CPU 版 torch；vLLM 跳过。</li>
+      <li><strong>Windows 长路径未开</strong> → 导致首次装 llama-cpp-python 报 <code>OSError</code>。已把注册表 <code>LongPathsEnabled</code> 设为 1。</li>
+      <li><strong>本机无 C/C++ 编译器</strong>（CMake 找不到 nmake）→ 从源码编译会失败。已改用官方预编译 CPU wheel 源解决。</li>
+      <li><strong>Ollama 安装包 1.5GB</strong>，且其托管在 GitHub Releases；直连 ollama.com 不通，最终走 SOCKS5 代理 curl 下载。</li>
+    </ul>
+  </div>
+
+  <h2>六、常用命令速查</h2>
+  <div class="cmd"><span># Python 栈（务必用 venv 的 python）</span>
+<span>&gt;</span> C:\Users\Administrator\.workbuddy\binaries\python\envs\default\Scripts\python.exe
+
+<span># 起 JupyterLab</span>
+<span>&gt;</span> ...\envs\default\Scripts\jupyter-lab.exe
+
+<span># Ollama</span>
+<span>&gt;</span> ollama serve            <span># 启动服务</span>
+<span>&gt;</span> ollama pull qwen2.5:3b  <span># 拉模型</span>
+<span>&gt;</span> ollama list             <span># 看已装模型</span>
+
+<span># HuggingFace</span>
+<span>&gt;</span> huggingface-cli download &lt;repo_id&gt;</div>
+
+  <div class="foot">环境隔离说明：所有 Python 包装在 <code>C:\Users\Administrator\.workbuddy\binaries\python\envs\default</code>，未污染系统 Python。</div>
+
+</div>
+</body>
+</html>
